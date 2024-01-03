@@ -19,6 +19,29 @@ class Product {
         Product product = (Product) obj;
         return key.equals(product.key);
     }
+
+    @Override
+    public int hashCode() {
+        return key.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return name + " ($" + price + ")";
+    }
+
+    // Getters
+    public String getKey(){
+        return key;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }
 
 
