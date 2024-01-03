@@ -1,6 +1,10 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 class Product {
     private String key;
     private String name;
@@ -44,6 +48,40 @@ class Product {
     }
 }
 
+class ShoppingCart {
+    private Map<Product, Integer> items;
+
+    public ShoppingCart(){
+        items = new HashMap<>();
+    }
+
+    // addProduct()
+    public void addProduct(Product product, int quantity){
+        items.put(product, items.getOrDefault(product, 0) + quantity);
+    }
+
+    // removeProduct()
+    public void removeProduct(Product product, int quantity){
+        int currentQuantity = items.getOrDefault(product, 0);
+        if(currentQuantity <= quantity){
+            items.remove(product);
+        } else {
+          items.put(product, currentQuantity - quantity);
+        }
+    }
+
+    // showItems()
+    public void showItems() {
+        if(items.isEmpty()) {
+            System.out.println("장바구니가 비어있습니다.");
+            return;
+        }
+        System.out.println("장바구니 내용: ");
+        for(Map.Entry<Product, Integer> entry : items.entrySet()){
+            System.out.println(entry.getKey() + ", 수량: " + entry.getValue());
+        }
+    }
+}
 
 
 public class Main {
